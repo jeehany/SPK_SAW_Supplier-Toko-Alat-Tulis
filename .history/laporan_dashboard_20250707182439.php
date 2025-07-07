@@ -116,12 +116,12 @@ foreach ($P as $k => $v) {
 }
 arsort($sorted);
 echo '<h4 class="mt-4 mb-2">Hasil Nilai Preferensi Supplier (P)</h4>';
-echo '<table class="table table-bordered mb-4"><thead><tr><th class="text-start">No</th><th>Supplier</th><th>Nilai Preferensi</th></tr></thead><tbody>';
+echo '<table class="table table-bordered mb-4"><thead><tr><th>No</th><th>Supplier</th><th>Nilai Preferensi</th></tr></thead><tbody>';
 $no = 0;
 foreach ($sorted as $id => $nilai) {
     $name = isset($P[$id . '_name']) ? $P[$id . '_name'] : '';
     $no++;
-    echo '<tr><td class="text-start fw-bold text-secondary">' . $no . '</td><td>' . htmlspecialchars($name) . '</td><td>' . round($nilai,4) . '</td></tr>';
+    echo '<tr><td class="text-center">' . $no . '</td><td>' . htmlspecialchars($name) . '</td><td>' . round($nilai,4) . '</td></tr>';
 }
 echo '</tbody></table>';
 echo '<div class="mt-5 text-end text-secondary small">Laporan dihasilkan pada: ' . date('d-m-Y H:i') . '</div>';
