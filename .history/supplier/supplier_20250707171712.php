@@ -88,7 +88,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form method="POST" enctype="multipart/form-data">
-                    <div class="modal-body py-4 px-4" style="max-height:65vh;overflow-y:auto;">
+                    <div class="modal-body py-4 px-4">
                         <div class="mb-3">
                             <label class="form-label fw-semibold text-dark">Nama Supplier</label>
                             <input type="text" name="name" placeholder="Nama Supplier..." class="form-control form-control-lg rounded-3" required>
