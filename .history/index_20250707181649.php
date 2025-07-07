@@ -197,44 +197,44 @@
                             </div>
                             <div class="card-body table-responsive rounded-4 overflow-hidden">
                                 <?php
-                                // --- Perhitungan SAW (normalisasi) ---
-                                // Ambil bobot dan matriks normalisasi dari W.php dan R.php (agar identik dengan preferensi.php)
-                                require_once "W.php";
-                                require_once "R.php";
-                                $P = array();
-                                $m = count($W);
-                                foreach ($R as $i => $r) {
-                                    $supplier_obj = $db->query("SELECT name FROM supplier WHERE id_supplier=$i")->fetch_object();
-                                    if ($supplier_obj) {
-                                        for ($j = 0; $j < $m; $j++) {
-                                            $P[$i] = (isset($P[$i]) ? $P[$i] : 0) + $r[$j] * $W[$j];
-                                        }
-                                        $P[$i . '_name'] = $supplier_obj->name;
-                                    }
-                                }
-                                $sorted = array();
-                                foreach ($P as $k => $v) {
-                                    if (strpos($k, '_name') === false) $sorted[$k] = $v;
-                                }
-                                arsort($sorted);
-                                $no = 0;
-                                ?>
-                                <table class="table table-hover align-middle mb-0" style="background:#fff;">
-                                    <thead style="background:#e0f2fe;">
-                                        <tr style="font-size:1.05rem; color:#0369a1;">
-                                            <th class="text-center">No</th>
-                                            <th>Supplier</th>
-                                            <th>Nilai Preferensi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        foreach ($sorted as $id => $nilai) {
-                                            $name = isset($P[$id . '_name']) ? $P[$id . '_name'] : '';
-                                            $no++;
-                                            echo "<tr><td class='text-center fw-bold text-secondary'>".$no."</td><td class='fw-semibold text-dark'>".htmlspecialchars($name)."</td><td class='fw-semibold text-dark'>".round($nilai,4)."</td></tr>";
-                                        }
-                                        ?>
+                    $P = array();
+                    $m = count($W);
+                    // Hitung nilai preferensi untuk setiap supplier
+                    foreach ($R as $i => $r) {
+                        $supplier = $db->query("SELECT name FROM supplier WHERE id_supplier=$i")->fetch_object();
+                        if ($supplier) {
+                            for ($j = 0; $j < $m; $j++) {
+                                $P[$i] = (isset($P[$i]) ? $P[$i] : 0) + $r[$j] * $W[$j];
+                            }
+                            // Simpan nama supplier untuk sorting nanti
+                            $P[$i . '_name'] = $supplier->name;
+                        }
+                    }
+                    // Urutkan $P berdasarkan nilai preferensi (descending)
+                    $sorted = array();
+                    foreach ($P as $k => $v) {
+                        if (strpos($k, '_name') === false) $sorted[$k] = $v;
+                    }
+                    arsort($sorted);
+                    $no = 0;
+                    foreach ($sorted as $i => $nilai) {
+                        $name = isset($P[$i . '_name']) ? $P[$i . '_name'] : '';
+                        $no++;
+                        $trophy = '';
+                        if ($no == 1) {
+                            $trophy = "<span title='Juara 1' style='margin-left:6px;color:#f59e42;font-size:1.2em;'>🥇</span>";
+                        } elseif ($no == 2) {
+                            $trophy = "<span title='Juara 2' style='margin-left:6px;color:#a3a3a3;font-size:1.2em;'>🥈</span>";
+                        } elseif ($no == 3) {
+                            $trophy = "<span title='Juara 3' style='margin-left:6px;color:#c59a6a;font-size:1.2em;'>🥉</span>";
+                        }
+                        echo "<tr>";
+                        echo "<td class='text-center fw-bold text-secondary'>" . $no . "</td>";
+                        echo "<td class='fw-semibold text-dark'>" . htmlspecialchars($name) . $trophy . "</td>";
+                        echo "<td class='fw-semibold text-primary'>" . round($nilai, 4) . "</td>";
+                        echo "</tr>\n";
+                    }
+                    ?>
                                     </tbody>
                                 </table>
                             </div>
