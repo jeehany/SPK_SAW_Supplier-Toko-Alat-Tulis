@@ -23,11 +23,7 @@
               <div class="card-content">
                 <div class="card-body pb-0">
                   <p class="card-text text-dark mb-3" style="font-size:1.05rem;">
-                    Nilai preferensi (P) merupakan penjumlahan dari perkalian matriks ternormalisasi R dengan vektor bobot W.<br>
-                    <span class="d-block mt-2 text-primary fw-semibold" style="font-size:1.04rem;">
-                      <i class="bi bi-trophy-fill me-1" style="color:#f59e42;"></i>
-                      Tabel di bawah ini sudah diurutkan otomatis dari nilai tertinggi ke terendah. Supplier dengan nilai tertinggi adalah peringkat terbaik (juara 1).
-                    </span>
+                    Nilai preferensi (P) merupakan penjumlahan dari perkalian matriks ternormalisasi R dengan vektor bobot W.
                   </p>
                 </div>
                 <div class="table-responsive rounded-4 overflow-hidden mb-4">

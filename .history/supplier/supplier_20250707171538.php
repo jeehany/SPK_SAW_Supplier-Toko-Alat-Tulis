@@ -150,7 +150,6 @@
         } else {
             echo '<div class="alert alert-danger m-4">Nama dan foto supplier wajib diisi!</div>';
         }
-    }
     // Modal detail supplier
     // Modal detail supplier
     ?>

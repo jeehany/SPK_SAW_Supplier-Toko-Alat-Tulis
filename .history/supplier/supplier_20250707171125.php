@@ -150,8 +150,6 @@
         } else {
             echo '<div class="alert alert-danger m-4">Nama dan foto supplier wajib diisi!</div>';
         }
-    }
-    // Modal detail supplier
     // Modal detail supplier
     ?>
     <div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="modalDetailLabel" aria-hidden="true">
@@ -197,6 +195,8 @@
       }
     });
     </script>
-    <?php require "../layout/js.php"; ?>
+    }
+    require "../layout/js.php";
+    ?>
 </body>
 </html>

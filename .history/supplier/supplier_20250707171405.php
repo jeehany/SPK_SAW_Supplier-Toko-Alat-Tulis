@@ -152,7 +152,6 @@
         }
     }
     // Modal detail supplier
-    // Modal detail supplier
     ?>
     <div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="modalDetailLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
@@ -197,6 +196,9 @@
       }
     });
     </script>
-    <?php require "../layout/js.php"; ?>
+    }
+    require "../layout/js.php";
+    }
+    ?>
 </body>
 </html>
