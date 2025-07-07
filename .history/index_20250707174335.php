@@ -70,7 +70,7 @@
                                         <tr style="font-size:1.05rem; color:#0369a1;">
                                             <th class="text-center">No</th>
                                             <th>Nama Supplier</th>
-                                            <th class="text-center">Foto</th>
+                                            <th class="text-center" style="width:80px;">Foto</th>
                                         </tr>
                                     </thead>
                                     <tbody>
