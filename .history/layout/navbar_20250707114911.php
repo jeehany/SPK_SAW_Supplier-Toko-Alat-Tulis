@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background:#0ea5e9;box-shadow:0 2px 12px 0 rgba(14,165,233,0.10);padding:0.7rem 2rem;">
   <div class="container-fluid">
     <a class="navbar-brand fw-bold d-flex align-items-center" href="/spksaw-master/" style="color:#fff;font-size:1.5rem;letter-spacing:1px;">
-      <i class="bi bi-lightning-charge-fill me-2" style="font-size:2rem;color:#fff;"></i>SPK<span style="color:#fff;" class="m-2">Supplier</span>
+      <i class="bi bi-lightning-charge-fill me-2" style="font-size:2rem;color:#fff;"></i>SPK <span style="color:#fff;" class="m"> Supplier</span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
