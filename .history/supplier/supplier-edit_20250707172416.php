@@ -36,10 +36,6 @@ $row = $result->fetch_array();
                                         <input type="text" class="form-control form-control-lg rounded-3" id="name" name="name" value="<?=htmlspecialchars($row['name']);?>" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="deskripsi" class="form-label fw-semibold text-dark">Deskripsi</label>
-                                        <textarea class="form-control form-control-lg rounded-3" id="deskripsi" name="deskripsi" rows="2" placeholder="Deskripsi singkat perusahaan..."><?=htmlspecialchars($row['deskripsi'] ?? '')?></textarea>
-                                    </div>
-                                    <div class="mb-3">
                                         <label for="alamat" class="form-label fw-semibold text-dark">Alamat</label>
                                         <input type="text" class="form-control form-control-lg rounded-3" id="alamat" name="alamat" value="<?=htmlspecialchars($row['alamat'] ?? '')?>">
                                     </div>

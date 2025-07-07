@@ -70,7 +70,7 @@
                                         <tr style="font-size:1.05rem; color:#0369a1;">
                                             <th class="text-center">No</th>
                                             <th>Nama Supplier</th>
-                                            <th class="ps-3" style="width:80px;">Foto</th>
+                                            <th class="ps-4" style="width:80px;">Foto</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -82,11 +82,11 @@
                                         echo "<tr>\n";
                                         echo "    <td class='text-center fw-bold text-secondary'>" . (++$i) . "</td>\n";
                                         echo "    <td class='fw-semibold text-dark'>" . htmlspecialchars($row->name) . "</td>\n";
-                                        echo "    <td class='text-center align-middle'>";
+                                        echo "    <td class='text-center'>";
                                         if (!empty($row->foto)) {
-                                            echo "<div class='d-flex justify-content-center align-items-center' style='height:40px;'><img src='" . htmlspecialchars($row->foto) . "' alt='Foto' style='width:36px;height:36px;object-fit:cover;border-radius:50%;border:1.5px solid #38b6ff;background:#e0f2fe;'></div>";
+                                            echo "<img src='" . htmlspecialchars($row->foto) . "' alt='Foto' style='width:36px;height:36px;object-fit:cover;border-radius:50%;border:1.5px solid #38b6ff;background:#e0f2fe;'> ";
                                         } else {
-                                            echo "<div class='d-flex justify-content-center align-items-center' style='height:40px;'><span class='d-inline-block rounded-circle bg-light border border-2 border-sky' style='width:36px;height:36px;background:#e0f2fe;'></span></div>";
+                                            echo "<span class='d-inline-block rounded-circle bg-light border border-2 border-sky' style='width:36px;height:36px;background:#e0f2fe;'></span> ";
                                         }
                                         echo "</td>\n";
                                         echo "  </tr>\n";
