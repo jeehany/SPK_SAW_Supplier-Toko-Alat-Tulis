@@ -1,6 +1,6 @@
 <?php
 require 'include/conn.php';
-require_once __DIR__ . '/assets/vendors/autoload.php'; // Composer autoload for PhpSpreadsheet
+require_once __DIR__ . '/vendor/autoload.php'; // Composer autoload for PhpSpreadsheet
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -10,16 +10,24 @@ $sheet->setTitle('Dashboard Data');
 
 // Supplier
 $sheet->setCellValue('A1', 'No');
-$sheet->setCellValue('B1', 'Nama Kandidat');
-$sheet->setCellValue('C1', 'Foto');
-$sql = 'SELECT name, foto FROM saw_alternatives';
+$sheet->setCellValue('B1', 'Nama Supplier');
+$sheet->setCellValue('C1', 'Deskripsi');
+$sheet->setCellValue('D1', 'Alamat');
+$sheet->setCellValue('E1', 'Email');
+$sheet->setCellValue('F1', 'Telepon');
+$sheet->setCellValue('G1', 'Foto');
+$sql = 'SELECT name, deskripsi, alamat, email, telepon, foto FROM supplier';
 $result = $db->query($sql);
 $i = 1;
 $rowNum = 2;
 while ($row = $result->fetch_object()) {
     $sheet->setCellValue('A'.$rowNum, $i);
     $sheet->setCellValue('B'.$rowNum, $row->name);
-    $sheet->setCellValue('C'.$rowNum, $row->foto);
+    $sheet->setCellValue('C'.$rowNum, $row->deskripsi);
+    $sheet->setCellValue('D'.$rowNum, $row->alamat);
+    $sheet->setCellValue('E'.$rowNum, $row->email);
+    $sheet->setCellValue('F'.$rowNum, $row->telepon);
+    $sheet->setCellValue('G'.$rowNum, $row->foto);
     $i++;
     $rowNum++;
 }
