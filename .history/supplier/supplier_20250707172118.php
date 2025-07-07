@@ -35,7 +35,7 @@
                                         <thead style="background:#e0f2fe;">
                                             <tr style="font-size:1.05rem; color:#0369a1;">
                                                 <!--<th class="text-center" style="width:48px;">No</th>-->
-                                                <th class="ps-3" style="width:80px;"></th>
+                                                <th class="ps-3" style="width:80px;">Foto</th>
                                                 <th>Nama Supplier</th>
                                                 <th>Deskripsi</th>
                                                 <th class="text-center" style="width:150px;">Aksi</th>

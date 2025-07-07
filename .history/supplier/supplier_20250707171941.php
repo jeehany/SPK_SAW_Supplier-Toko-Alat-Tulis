@@ -35,9 +35,7 @@
                                         <thead style="background:#e0f2fe;">
                                             <tr style="font-size:1.05rem; color:#0369a1;">
                                                 <!--<th class="text-center" style="width:48px;">No</th>-->
-                                                <th class="ps-3" style="width:80px;"></th>
-                                                <th>Nama Supplier</th>
-                                                <th>Deskripsi</th>
+                                                <th colspan="2" class="ps-3">Nama Supplier</th>
                                                 <th class="text-center" style="width:150px;">Aksi</th>
                                             </tr>
                                         </thead>
@@ -47,14 +45,10 @@
                                         $result = $db->query($sql);
                                         while ($row = $result->fetch_object()) {
                                             echo "<tr>\n";
-                                            // Kolom foto
-                                            $imgPath = ($row->foto && strpos($row->foto, 'http') === 0) ? $row->foto : ('../' . ($row->foto ?? ''));
-                                            $imgTag = $row->foto ? "<img src='" . htmlspecialchars($imgPath) . "' alt='Foto' style='width:56px;height:56px;object-fit:cover;border-radius:50%;border:2px solid #38b6ff;background:#e0f2fe;'>" : "<span class='text-secondary'>-</span>";
-                                            echo "    <td class='ps-2 text-center'>" . $imgTag . "</td>\n";
                                             // Kolom nama supplier
-                                            echo "    <td class='fw-semibold text-dark' style='font-size:1.05rem;'>" . htmlspecialchars($row->name ?? '') . "</td>\n";
+                                            echo "    <td class='ps-2 fw-semibold text-dark' style='font-size:1.05rem;'>" . htmlspecialchars($row->name ?? '') . "</td>\n";
                                             // Kolom deskripsi
-                                            echo "    <td class='text-secondary' style='font-size:0.98rem;'>" . nl2br(htmlspecialchars($row->deskripsi ?? '')) . "</td>\n";
+                                            echo "    <td class='ps-2 text-secondary' style='font-size:0.98rem;'>" . nl2br(htmlspecialchars($row->deskripsi ?? '')) . "</td>\n";
                                             // Kolom aksi
                                             echo "    <td class='text-center'>";
                                             echo "<div class='d-inline-flex gap-2'>";
