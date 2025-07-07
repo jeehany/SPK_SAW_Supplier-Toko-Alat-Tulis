@@ -1,0 +1,20 @@
+<?php
+require "include/conn.php";
+$id = $_POST['id_alternative'];
+$name = $_POST['name'];
+$foto_sql = '';
+if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
+    $targetDir = 'images/';
+    if (!is_dir($targetDir)) {
+        mkdir($targetDir, 0777, true);
+    }
+    $ext = pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
+    $filename = uniqid('foto_', true) . '.' . $ext;
+    $targetFile = $targetDir . $filename;
+    if (move_uploaded_file($_FILES['foto']['tmp_name'], $targetFile)) {
+        $foto_sql = ", foto='$targetFile'";
+    }
+}
+$sql = "UPDATE saw_alternatives SET name='$name'" . $foto_sql . " WHERE id_alternative='$id'";
+$result = $db->query($sql);
+header("location:./alternatif.php");
