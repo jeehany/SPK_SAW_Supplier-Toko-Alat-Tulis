@@ -54,16 +54,7 @@
                           echo "<td class='fw-semibold text-dark'>" . htmlspecialchars($row->criteria) . "</td>\n";
                           echo "<td class='fw-semibold text-dark'>" . htmlspecialchars($row->weight) . "</td>\n";
                           echo "<td class='fw-semibold' style='color:#0ea5e9;'>" . htmlspecialchars($row->attribute) . "</td>\n";
-                          echo "<td class='text-center'>
-                            <div class='d-flex gap-1 justify-content-center'>
-                              <a href='./bobot-edit.php?id={$row->id_criteria}' class='btn btn-outline-primary btn-sm px-3 py-1 fw-bold' style='border-radius:1.5rem;background:#f0f9ff;border:1.5px solid #38b6ff;color:#0369a1;'>
-                                <i class='bi bi-pencil-square me-1'></i>Edit
-                              </a>
-                              <a href='./bobot-hapus.php?id={$row->id_criteria}' class='btn btn-outline-danger btn-sm px-3 py-1 fw-bold' style='border-radius:1.5rem;background:#fff1f2;border:1.5px solid #f43f5e;color:#e11d48;' onclick='return confirm(\"Yakin ingin menghapus kriteria ini?\");'>
-                                <i class='bi bi-trash me-1'></i>Hapus
-                              </a>
-                            </div>
-                          </td>\n";
+                          echo "<td class='text-center'><a href='./bobot-edit.php?id={$row->id_criteria}' class='btn btn-outline-primary btn-sm px-3 py-1 fw-bold' style='border-radius:1.5rem;background:#f0f9ff;border:1.5px solid #38b6ff;color:#0369a1;'><i class='bi bi-pencil-square me-1'></i>Edit</a></td>\n";
                           echo "</tr>\n";
                       }
                       $result->free();
