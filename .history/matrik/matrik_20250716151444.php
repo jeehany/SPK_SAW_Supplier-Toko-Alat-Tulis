@@ -118,58 +118,45 @@
                     <thead style="background:#e0f2fe;">
                       <tr style="color:#0369a1;font-weight:800;">
                         <th rowspan='2'>Supplier</th>
-                        <th colspan='<?php echo $count->total; ?>'>Kriteria</th>
+                        <th colspan='5'>Kriteria</th>
                       </tr>
                       <tr style="color:#0369a1;font-weight:800;">
-                        <?php
-                        $result_criterias = $db->query($sql_criterias);
-                        while($criteria = $result_criterias->fetch_object()) {
-                            echo "<th>C{$criteria->id_criteria}</th>";
-                        }
-                        $result_criterias->free();
-                        ?>
+                        <th>C1</th>
+                        <th>C2</th>
+                        <th>C3</th>
+                        <th>C4</th>
+                        <th>C5</th>
                       </tr>
                     </thead>
                     <tbody>
                     <?php
-                    // Build dynamic SQL for matrix R
-                    $sql_parts = array();
-                    $result_criterias = $db->query($sql_criterias);
-                    while($criteria = $result_criterias->fetch_object()) {
-                        $cid = $criteria->id_criteria;
-                        $maxval = max($X[$cid]);
-                        $minval = min($X[$cid]);
-                        $sql_parts[] = "SUM(IF(a.id_criteria={$cid}, " .
-                                     "IF(b.attribute='benefit', " .
-                                     "a.value/{$maxval}, " .
-                                     "{$minval}/a.value), 0)) AS C{$cid}";
-                    }
-                    $result_criterias->free();
-
-                    $sql = "SELECT a.id_supplier, s.name AS supplier_name, " . 
-                           implode(", ", $sql_parts) . 
-                           " FROM saw_evaluations a" .
-                           " JOIN saw_criterias b ON a.id_criteria = b.id_criteria" .
-                           " JOIN supplier s ON a.id_supplier = s.id_supplier" .
-                           " GROUP BY a.id_supplier, s.name" .
-                           " ORDER BY a.id_supplier";
+                    $sql = "SELECT 
+                        a.id_supplier,
+                        s.name AS supplier_name,
+                        SUM(IF(a.id_criteria=1, IF(b.attribute='benefit', a.value/" . max($X[1]) . ", " . min($X[1]) . "/a.value), 0)) AS C1,
+                        SUM(IF(a.id_criteria=2, IF(b.attribute='benefit', a.value/" . max($X[2]) . ", " . min($X[2]) . "/a.value), 0)) AS C2,
+                        SUM(IF(a.id_criteria=3, IF(b.attribute='benefit', a.value/" . max($X[3]) . ", " . min($X[3]) . "/a.value), 0)) AS C3,
+                        SUM(IF(a.id_criteria=4, IF(b.attribute='benefit', a.value/" . max($X[4]) . ", " . min($X[4]) . "/a.value), 0)) AS C4,
+                        SUM(IF(a.id_criteria=5, IF(b.attribute='benefit', a.value/" . max($X[5]) . ", " . min($X[5]) . "/a.value), 0)) AS C5
+                    FROM saw_evaluations a
+                    JOIN saw_criterias b ON a.id_criteria = b.id_criteria
+                    JOIN supplier s ON a.id_supplier = s.id_supplier
+                    GROUP BY a.id_supplier, s.name
+                    ORDER BY a.id_supplier";
                     $result = $db->query($sql);
                     $R = array();
                     $adaData = false;
                     while ($row = $result->fetch_object()) {
                         $adaData = true;
-                        echo "<tr>";
-                        echo "<th>" . htmlspecialchars($row->supplier_name) . "</th>";
-                        
-                        // Display normalized values
-                        $result_criterias = $db->query($sql_criterias);
-                        while($criteria = $result_criterias->fetch_object()) {
-                            $colname = "C" . $criteria->id_criteria;
-                            echo "<td>" . round($row->$colname, 2) . "</td>";
-                        }
-                        $result_criterias->free();
-                        
-                        echo "</tr>\n";
+                        $R[$row->id_supplier] = array($row->C1, $row->C2, $row->C3, $row->C4, $row->C5);
+                        echo "<tr>
+                            <th>" . htmlspecialchars($row->supplier_name) . "</th>
+                            <td>" . round($row->C1, 2) . "</td>
+                            <td>" . round($row->C2, 2) . "</td>
+                            <td>" . round($row->C3, 2) . "</td>
+                            <td>" . round($row->C4, 2) . "</td>
+                            <td>" . round($row->C5, 2) . "</td>
+                        </tr>\n";
                     }
                     if (!$adaData) {
                         echo "<tr><td colspan='6' class='text-center text-secondary'>Belum ada data supplier yang dinilai.</td></tr>";

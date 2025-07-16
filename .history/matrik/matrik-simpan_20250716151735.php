@@ -24,16 +24,8 @@
                             <div class="card-body py-4 px-4">
                                 <form action="matrik-simpan.php" method="POST">
                                     <div class="mb-3">
-                                        <label class="form-label fw-semibold text-dark">Supplier</label>
-                                        <select name="id_alternative" class="form-control form-control-lg rounded-3" required>
-                                            <?php
-                                            $sql_suppliers = "SELECT * FROM supplier ORDER BY id_supplier";
-                                            $result_suppliers = $db->query($sql_suppliers);
-                                            while($supplier = $result_suppliers->fetch_object()) {
-                                                echo "<option value=\"" . $supplier->id_supplier . "\">" . htmlspecialchars($supplier->supplier_name) . "</option>";
-                                            }
-                                            ?>
-                                        </select>
+                                        <label class="form-label fw-semibold text-dark">ID Supplier</label>
+                                        <input type="text" name="id_alternative" class="form-control form-control-lg rounded-3" required>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label fw-semibold text-dark">Kriteria</label>

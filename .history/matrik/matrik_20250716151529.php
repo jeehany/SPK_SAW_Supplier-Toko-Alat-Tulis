@@ -158,18 +158,15 @@
                     $adaData = false;
                     while ($row = $result->fetch_object()) {
                         $adaData = true;
-                        echo "<tr>";
-                        echo "<th>" . htmlspecialchars($row->supplier_name) . "</th>";
-                        
-                        // Display normalized values
-                        $result_criterias = $db->query($sql_criterias);
-                        while($criteria = $result_criterias->fetch_object()) {
-                            $colname = "C" . $criteria->id_criteria;
-                            echo "<td>" . round($row->$colname, 2) . "</td>";
-                        }
-                        $result_criterias->free();
-                        
-                        echo "</tr>\n";
+                        $R[$row->id_supplier] = array($row->C1, $row->C2, $row->C3, $row->C4, $row->C5);
+                        echo "<tr>
+                            <th>" . htmlspecialchars($row->supplier_name) . "</th>
+                            <td>" . round($row->C1, 2) . "</td>
+                            <td>" . round($row->C2, 2) . "</td>
+                            <td>" . round($row->C3, 2) . "</td>
+                            <td>" . round($row->C4, 2) . "</td>
+                            <td>" . round($row->C5, 2) . "</td>
+                        </tr>\n";
                     }
                     if (!$adaData) {
                         echo "<tr><td colspan='6' class='text-center text-secondary'>Belum ada data supplier yang dinilai.</td></tr>";
